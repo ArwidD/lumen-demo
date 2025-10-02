@@ -16,9 +16,10 @@
 $router->get('/', function () use ($router) {
     return view('welcome');
 });
-$router->get('/{id}', function ($id) use ($router) {
+$router->get('/{id:(?!farger$)}', function ($id) use ($router) {
     return view('hello', ['namn' => $id]);
 });
 
-$router->get('/farger', 'colorcontroller@show');
-$router->post('/farger', 'colorcontroller@post');
+$router->get('/farger', 'ColorController@show');
+$router->get('/farger/{back}/{front}', 'ColorController@withParams');
+$router->post('/farger', 'ColorController@post');

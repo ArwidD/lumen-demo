@@ -8,14 +8,22 @@ use Illuminate\Support\Facades\View;
 
 class ColorController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return View::make('farger');
+        $bakgrund = $request->get('back');
+        $text = $request->get('front');
+        return View::make('farger',['backColor' => $bakgrund, 'textColor' => $text]);
     }
 
     function post(Request $request) {
         $bakgrund = $request->request->get('backColor');
         $text = $request->request->get('textColor');
+
+        return View::make('farger',['backColor' => $bakgrund, 'textColor' => $text]);
+    }
+    function withParams(Request $request) {
+        $bakgrund = $request->route('back');
+        $text = $request->route('front');
 
         return View::make('farger',['backColor' => $bakgrund, 'textColor' => $text]);
     }
