@@ -13,11 +13,11 @@
 </head>
 <body>
     <h1>välj färger</h1>
-    <form method ="POST">
+    <form method ="POST" action="/farger">
         välj textfärg: <input name="textColor" value="{{ $textColor ?? ''}}"><br>
         välj bakgrundsfärg: <input name="backColor" value="{{ $backColor ?? ''}}"><br>
-        <input type="submit" value="skicka"><br>
-        <input type="reset" value="ångra"><br>
+        <input type="submit" value="skicka">
+        <input type="reset" value="ångra">
     </form>
 </body>
 </html>
