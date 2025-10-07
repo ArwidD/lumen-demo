@@ -4,23 +4,21 @@ namespace App\Repositories\Implementations;
 
 use App\Models\Uppgift;
 use App\Repositories\Interfaces\UppgiftRepo;
+use App\Storage\JsonDbConnection;
+use App\Storage\JsonFileHandler;
 
 class JsonUppgiftRepo implements UppgiftRepo {
     private array $lista = [];
-    private string $path = __DIR__ . '/../../../storage/app/uppgifter.json';
+    private $path;
 
-    public function __construct() {
-        if (!file_exists($this->path)) {
-            return;
-        }
+    public function __construct(JsonDbConnection $dbConnection) {
+        $this->path=new JsonFileHandler('uppgifter', $dbConnection);
 
         // Läs hela filen
-        $content = file_get_contents($this->path);
-        // Gör om från sträng till json-objekt
-        $json = json_decode($content, true) ?? [];
+        $content = $this->path->read();
 
         // Skapa ett uppgifts-object av varje uppgiftobjekt från filen
-        foreach ($json as $item) {
+        foreach ($content as $item) {
             $this->lista[$item['id']] = new Uppgift($item);
         }
     }
@@ -49,7 +47,7 @@ class JsonUppgiftRepo implements UppgiftRepo {
             $uppgift->id=$nextId;
         }
         $this->lista[$uppgift->id]=$uppgift;
-        file_put_contents($this->path,json_encode($this->lista));
+        $this->path->write($this->lista);
     }
 
     /**
@@ -64,6 +62,6 @@ class JsonUppgiftRepo implements UppgiftRepo {
      */
     public function delete(string $id):void {
         unset($this->lista[$id]);
-        file_put_contents($this->path,json_encode($this->lista));
+        $this->path->write($this->lista);
     }
 }

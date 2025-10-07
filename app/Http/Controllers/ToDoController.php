@@ -33,7 +33,7 @@ class TodoController extends Controller {
         return View::make('todo', ['lista' => $lista]);
     }
 
-    function remove(Request $request) {
+    function delete(Request $request) {
         $id = $request->request->get('uppgift');
         $this->repo->delete($id);
 
@@ -41,4 +41,17 @@ class TodoController extends Controller {
         $lista = $this->repo->all();
         return View::make('todo', ['lista' => $lista]);
     }
+
+
+function update(Request $request) {
+    $id = $request->request->get('uppgift');
+    $uppgift = $this->repo->get($id);
+    $uppgift->done = !$uppgift->done;
+
+    $this->repo->update($uppgift);
+
+    // Läs hela förvaret
+    $lista = $this->repo->all();
+    return View::make('todo', ['lista' => $lista]);
+}
 }
