@@ -28,18 +28,14 @@ class TodoController extends Controller {
         // Spara uppgiften
         $this->repo->add($uppgift);
 
-        // Läs hela förvaret
-        $lista = $this->repo->all();
-        return View::make('todo', ['lista' => $lista]);
+    return redirect('/ToDo');
     }
 
     function delete(Request $request) {
         $id = $request->request->get('uppgift');
         $this->repo->delete($id);
 
-        // Läs hela förvaret
-        $lista = $this->repo->all();
-        return View::make('todo', ['lista' => $lista]);
+    return redirect('/ToDo');
     }
 
 
@@ -50,8 +46,6 @@ function update(Request $request) {
 
     $this->repo->update($uppgift);
 
-    // Läs hela förvaret
-    $lista = $this->repo->all();
-    return View::make('todo', ['lista' => $lista]);
+    return redirect('/ToDo');
 }
 }
