@@ -29,6 +29,10 @@ $router->post('/todo', 'ToDoController@add');
 $router->delete('/todo', 'ToDoController@delete');
 $router->put('/todo', 'ToDoController@update');
 
+//användare
+$router->get('/anvandare','UserController@show');
+$router->post('/anvandare','UserController@add');
+
 $router->get('/{id}', function ($id) use ($router) {
     $reserved=['todo', 'farger'];
     if(in_array(strtolower($id), $reserved)) {
