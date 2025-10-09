@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'id' => 0,
             'namn' => $this->faker->name,
             'epost' => $this->faker->unique()->safeEmail,
+            'losenord' =>''
         ];
     }
 }
