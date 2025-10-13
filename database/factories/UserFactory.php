@@ -5,8 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserFactory extends Factory
-{
+class UserFactory extends Factory {
     /**
      * The name of the factory's corresponding model.
      *
@@ -19,13 +18,13 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         return [
             'id' => 0,
             'namn' => $this->faker->name,
             'epost' => $this->faker->unique()->safeEmail,
-            'losenord' =>''
+            'losenord' => '',
+            'admin' => 0
         ];
     }
 }
