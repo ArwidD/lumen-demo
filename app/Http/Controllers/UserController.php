@@ -37,19 +37,41 @@ class UserController extends Controller {
     }
 
     function add(Request $request) {
+        // bara admin ska kunna lägga till användare
+        $me=$request->user();
+        if(!$me->admin) {
+            return View::make('ajabaja');
+        }
+
         $user = User::factory()->make($request->request->all());
         $this->repo->add($user);
         return redirect('/anvandare');
     }
 
     public function modifyUser(Request $request) {
+        // hämta iloggad användare
+        $me=$request->user();
+   
         $id = $request->route('id');
-        if ($request->request->get('delete')) {
-            $this->repo->delete($id);
+
+        //bara admin får radera men inte sig själv
+        if ($request->request->has('delete') && ($id==$me->id || $me->admin)) {
+            return View::make('ajabaja');
         }
-        else {
+
+            //kontrollera för uppdateringsrättigheter
+            if ($id != $request->route('id')) {
+                return View::make('ajabaja');
+            }
+            // allt ok för uppdateringsrättigheter
+            if ($request->request->has('delete')) {
+                $this->repo->delete($id);
+            } else {
             $user = $this->repo->get($id);
             $user->fill($request->request->all());
+            if(!$me->admin) {
+                $user->admin = 0;
+            }
             $this->repo->update($user);
         }
         return redirect('/anvandare');
