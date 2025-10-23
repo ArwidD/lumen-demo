@@ -10,8 +10,12 @@ class Uppgift extends Model {
 
     protected $fillable=['id', 'text', 'done'];
 
+    protected $table = 'todos';
+
     protected $primaryKey='id';
+
     public $incrementing=true;
+    
     protected $keyType='integer';
 
 }
