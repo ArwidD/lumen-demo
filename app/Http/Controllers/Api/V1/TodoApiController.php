@@ -35,7 +35,7 @@ class TodoAPiController extends Controller {
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
-
+    }
 
     public function update(Request $request) {
         try {
@@ -91,5 +91,4 @@ class TodoAPiController extends Controller {
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
-
 }
