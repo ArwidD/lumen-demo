@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Repositories\Interfaces\UserRepo;
 use App\Repositories\Implementations\JsonUserRepo;
 use App\Repositories\Implementations\DbUppgiftRepo;
+use App\Repositories\Implementations\DbUserRepo;
 use App\Repositories\Interfaces\UppgiftRepo;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,7 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
+        //$this->app->bind(UserRepo::class, DbUserRepo::class);
         $this->app->bind(UppgiftRepo::class, DbUppgiftRepo::class);
         $this->app->bind(UserRepo::class, JsonUserRepo::class);
     }

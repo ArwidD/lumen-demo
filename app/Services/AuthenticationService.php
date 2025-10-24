@@ -13,7 +13,6 @@ class AuthenticationService {
 
     public function attemptLogin(Login $login) {
         $user=$this->repo->getUserByEmail($login->getEpost());
-
         if($user && Hash::check($login->getLosenord(), $user->losenord)) {
             return $user;
         }

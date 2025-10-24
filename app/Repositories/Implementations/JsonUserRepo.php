@@ -67,7 +67,7 @@ class JsonUserRepo implements UserRepo {
 
     public function getUserByEmail(string $email):?User {
         foreach ($this->data as $user) {
-            if (strtolower($user->epost) === strtolower($email)) {
+             if (strtolower($user->epost) === strtolower($email)) {
                 return $user;
             }
         }

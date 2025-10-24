@@ -15,7 +15,6 @@ class LoginController extends Controller {
     public function login(Request $request, AuthenticationService $auth) {
         // Skapa login-objekt
         $login = Login::create($request->request->all());
-
         // Kolla inmatad data mot databasen
         $user = $auth->attemptLogin($login);
 
