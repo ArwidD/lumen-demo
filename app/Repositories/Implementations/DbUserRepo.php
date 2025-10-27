@@ -35,7 +35,7 @@ class DbUserRepo implements UserRepo {
     }
 
     public function delete(string $id): void {
-        User::destory($id);
+        User::destroy($id);
     }
 
     public function getUserByEmail(string $email): ?User {

@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        //$this->app->bind(UserRepo::class, DbUserRepo::class);
+        $this->app->bind(UserRepo::class, DbUserRepo::class);
         $this->app->bind(UppgiftRepo::class, DbUppgiftRepo::class);
-        $this->app->bind(UserRepo::class, JsonUserRepo::class);
+        //$this->app->bind(UserRepo::class, JsonUserRepo::class);
     }
 }

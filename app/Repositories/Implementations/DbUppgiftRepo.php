@@ -35,6 +35,6 @@ class DbUppgiftRepo implements UppgiftRepo {
     }
 
     public function delete(string $id): void {
-        Uppgift::destory($id);
+        Uppgift::destroy($id);
     }
 }
