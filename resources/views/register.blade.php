@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        @if($meddelande)
+        @if(isset ($meddelande))
             <p class="error">{{$meddelande}}</p>
         @endif
         <h2>Registrera ny användare</h2>
