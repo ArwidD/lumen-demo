@@ -40,6 +40,10 @@ $router->group(['middleware' => 'auth.user'], function() use ($router) {
 $router->get('/login', 'LoginController@show');
 $router->post('/login', 'LoginController@login');
 
+// Registrering
+$router->get('/register', 'RegisterController@show');
+$router->post('/register', 'RegisterController@register');
+
 
 // Fallback rutt
 $router->get('/{id}', function($id) use ($router) {

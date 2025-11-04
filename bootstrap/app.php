@@ -83,8 +83,10 @@ $app->middleware([
 
 $app->routeMiddleware([
     'auth.user' => App\Http\Middleware\AuthenticatedUser::class,
- ]);
-
+]);
+$app->routeMiddleware([
+    'api.auth' => App\Http\Middleware\ApiJwtAuthentication::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -118,11 +120,10 @@ $app->router->group([
     require __DIR__ . '/../routes/web.php';
 });
 $app->router->group([
-    'prefix'=>"api/v1",
-    'namespace'=> 'App\Http\Controllers\Api\V1',
-], function ($router) {
+    'prefix' => "api/v1",
+    'namespace' => 'App\Http\Controllers\Api\V1',
+], function($router) {
     require __DIR__ . "/../routes/api_v1.php";
-}
-);
+});
 
 return $app;
